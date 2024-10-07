@@ -15,7 +15,7 @@ namespace ProgettoDataSet
 
         public void Leggi()
         {
-            StreamReader sr = new StreamReader("list.csv");
+            StreamReader sr = new StreamReader("ai_job_market_insights.csv");
 
             string[] array = new string[10];
             string linea = sr.ReadLine();
@@ -30,6 +30,8 @@ namespace ProgettoDataSet
                 linea = sr.ReadLine();
             }
             sr.Close();
+
+
 
         }
     }

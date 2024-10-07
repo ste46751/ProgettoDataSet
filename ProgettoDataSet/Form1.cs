@@ -21,13 +21,14 @@ namespace ProgettoDataSet
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Add(this.jobs);
 
-          
+        {
+
+            dataGridView1.DataSource = jobs.jobs;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        
+        private void Form1_Load_1(object sender, EventArgs e)
         {
             jobs.Leggi();
         }
