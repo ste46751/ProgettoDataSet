@@ -19,8 +19,6 @@ namespace ProgettoDataSet
 
             string[] array = new string[10];
             string linea = sr.ReadLine();
-
-            bool riga1 = true;
             while (linea != null)
             {
                 if (linea != null)
