@@ -112,5 +112,11 @@ namespace ProgettoDataSet
 
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (var campo in ) ;
+              
+        }
     }
 }
