@@ -14,7 +14,7 @@ namespace ProgettoDataSet
 {
     public partial class Form1 : Form
     {
-        List<Job> jobs2 = new List<Job>();
+        
         List lista = new List();
         public Form1()
         {
@@ -55,7 +55,7 @@ namespace ProgettoDataSet
                 case "industry":
                     Combo_f2.Items.Clear();
                     Combo_f2.Text = null;
-                    Combo_f2.Items.Add("Maufacturing");
+                    Combo_f2.Items.Add("Manufacturing");
                     Combo_f2.Items.Add("Education");
                     Combo_f2.Items.Add("Technology");
                     Combo_f2.Items.Add("Finance");
@@ -65,7 +65,7 @@ namespace ProgettoDataSet
                     Combo_f2.Items.Clear();
                     Combo_f2.Text = null;
                     Combo_f2.Items.Add("Large");
-                    Combo_f2.Items.Add("Mediumt");
+                    Combo_f2.Items.Add("Medium");
                     Combo_f2.Items.Add("Small");
                     break;
                 case "location":
@@ -125,7 +125,9 @@ namespace ProgettoDataSet
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < lista.jobs.Count; i++)
+            List<Job> jobs2 = new List<Job>();
+
+            for (int i = 0; i < lista.jobs.Count; i++)
             {
                 var tipo = lista.jobs[i].GetType();  // Ottieni il tipo dell'oggetto
                 var proprieta = tipo.GetProperty(Combo_f1.SelectedItem.ToString());  // Ottieni la proprietà
@@ -136,10 +138,12 @@ namespace ProgettoDataSet
                     jobs2.Add(lista.jobs[i]);
                 }
             }
-
             dataGridView1.DataSource = jobs2;
+        }
 
-
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = lista.jobs;
         }
     }
 }
