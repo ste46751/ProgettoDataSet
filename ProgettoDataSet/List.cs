@@ -33,40 +33,7 @@ namespace ProgettoDataSet
             sr.Close();
 
 
-
         }
-        
 
-        public List<Job> Filtra(string par1, string par2)
-        {
-            List<Job> nl = new List<Job>();
-
-            for (int i = 0; i < jobs.Count; i++) 
-            {
-                var tipo= jobs[i].GetType();
-                var proprietà = tipo.GetProperty(par2);
-                var valore = proprietà.GetValue(jobs[i])?.ToString();
-                if(valore == par1)
-                {
-                    nl.Add(jobs[i]);
-                }
-                else
-                {
-
-                }
-            }
-
-            if(nl.Count == 0)
-            {
-                MessageBox.Show("errore");
-
-                return jobs;
-            }
-            else
-            {
-                return nl;
-            }
-
-        }   
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ProgettoDataSet
 {
@@ -19,7 +20,7 @@ namespace ProgettoDataSet
         public Form1()
         {
             InitializeComponent();
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +35,7 @@ namespace ProgettoDataSet
         {
             lista.Leggi();
             panel1.Visible = false;
+            panel2.Visible = false;
         }
 
         private void Combo_f1_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,5 +147,65 @@ namespace ProgettoDataSet
         {
             dataGridView1.DataSource = lista.jobs;
         }
+        public int GetQuantity(string stringa)
+        {
+            int n = 0;
+
+            for (int i = 0; i < lista.jobs.Count; i++)
+            {
+                var tipo = lista.jobs[i].GetType();  // Ottieni il tipo dell'oggetto
+                var proprieta = tipo.GetProperty("industry");  // Ottieni la proprietà
+                var valoreProprieta = proprieta.GetValue(lista.jobs[i])?.ToString();  // Ottieni il valore della proprietà come stringa
+
+                if (valoreProprieta == stringa)
+                {
+                    n++;
+                }
+            }
+            return n;
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+            
+            panel2.Visible = true;
+
+            chart1.Series.Clear();
+
+            // Aggiungi una nuova serie
+            Series series = new Series
+            {
+                Name = "Dati",
+                ChartType = SeriesChartType.Column, // Imposta il tipo di grafico (es. Column per grafico a colonne)
+                IsVisibleInLegend = true
+
+            };
+
+            chart1.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 8);
+            chart1.ChartAreas[0].AxisX.Interval = 1;
+            // Aggiungi la serie al controllo Chart
+            chart1.Series.Add(series);
+
+            // Inserisci i dati (es. anni e valori associati)
+            series.Points.AddXY("Entertainment", GetQuantity("Entertainment"));
+            series.Points.AddXY("Technology", GetQuantity("Technology"));
+            series.Points.AddXY("Retail", GetQuantity("Retail"));
+            series.Points.AddXY("Education", GetQuantity("Education"));
+            series.Points.AddXY("Finance", GetQuantity("Finance"));
+            series.Points.AddXY("Transportation", GetQuantity("Transportation"));
+            series.Points.AddXY("Telecommunications", GetQuantity("Telecommunications"));
+            series.Points.AddXY("Manufacturing", GetQuantity("Manufacturing"));
+            series.Points.AddXY("Healthcare", GetQuantity("Healthcare"));
+            series.Points.AddXY("Energy", GetQuantity("Energy"));
+
+            // Imposta il titolo del grafico
+            chart1.Titles.Add("Industry ranks");
+
+            // Opzionale: personalizza l'asse X e l'asse Y
+            chart1.ChartAreas[0].AxisX.Title = "Industry";
+            chart1.ChartAreas[0].AxisY.Title = "Quantity";
+        }
+
+        
     }
 }
