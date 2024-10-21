@@ -32,5 +32,7 @@ namespace ProgettoDataSet
             this.remote_friendly = remote_friendly;
             this.job_growth_projection = job_growth_projection;
         }
+
+        
     }
 }

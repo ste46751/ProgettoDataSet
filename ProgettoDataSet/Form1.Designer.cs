@@ -32,8 +32,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Combo_f1 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Combo_f2 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.Combo_f2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,16 +60,16 @@
             // 
             this.Combo_f1.FormattingEnabled = true;
             this.Combo_f1.Items.AddRange(new object[] {
-            "Job Title",
-            "Industry",
-            "Company Size",
-            "Location",
-            "AI Adoption Level",
-            "Automation Risk",
-            "Required Skills",
-            "Salary USD",
-            "Remote Friendly",
-            "Job Growth Projection"});
+            "job_title",
+            "industry",
+            "company_size",
+            "location",
+            "adoption_level",
+            "automation_risk",
+            "required_skills",
+            "salary_usd",
+            "remote_friendly",
+            "job_growth_projection"});
             this.Combo_f1.Location = new System.Drawing.Point(38, 21);
             this.Combo_f1.Name = "Combo_f1";
             this.Combo_f1.Size = new System.Drawing.Size(121, 21);
@@ -86,14 +86,6 @@
             this.panel1.Size = new System.Drawing.Size(200, 212);
             this.panel1.TabIndex = 3;
             // 
-            // Combo_f2
-            // 
-            this.Combo_f2.FormattingEnabled = true;
-            this.Combo_f2.Location = new System.Drawing.Point(38, 65);
-            this.Combo_f2.Name = "Combo_f2";
-            this.Combo_f2.Size = new System.Drawing.Size(121, 21);
-            this.Combo_f2.TabIndex = 3;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(38, 120);
@@ -103,6 +95,14 @@
             this.button2.Text = "Cerca";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Combo_f2
+            // 
+            this.Combo_f2.FormattingEnabled = true;
+            this.Combo_f2.Location = new System.Drawing.Point(38, 65);
+            this.Combo_f2.Name = "Combo_f2";
+            this.Combo_f2.Size = new System.Drawing.Size(121, 21);
+            this.Combo_f2.TabIndex = 3;
             // 
             // Form1
             // 

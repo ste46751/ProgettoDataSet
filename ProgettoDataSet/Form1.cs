@@ -14,7 +14,8 @@ namespace ProgettoDataSet
 {
     public partial class Form1 : Form
     {
-        List jobs = new List();
+        List<Job> jobs2 = new List<Job>();
+        List lista = new List();
         public Form1()
         {
             InitializeComponent();
@@ -24,14 +25,14 @@ namespace ProgettoDataSet
         private void button1_Click(object sender, EventArgs e)
 
         {
-            dataGridView1.DataSource = jobs.jobs;
+            dataGridView1.DataSource = lista.jobs;
             panel1.Visible = true;
         }
 
         
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            jobs.Leggi();
+            lista.Leggi();
             panel1.Visible = false;
         }
 
@@ -39,7 +40,7 @@ namespace ProgettoDataSet
         {
             switch (Combo_f1.Text)
             {
-                case "Job Title":
+                case "job_title":
                     Combo_f2.Items.Clear();
                     Combo_f2.Text = null;
                     Combo_f2.Items.Add("Cybersecurity Analyst");
@@ -51,42 +52,48 @@ namespace ProgettoDataSet
                     Combo_f2.Items.Add("Product Manager");
                     break;
 
-                case "Industry":
+                case "industry":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("Maufacturing");
                     Combo_f2.Items.Add("Education");
                     Combo_f2.Items.Add("Technology");
                     Combo_f2.Items.Add("Finance");
                     Combo_f2.Items.Add("Telecommunications");
                     break;
-                case "Comapany Size":
+                case "company_size":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("Large");
                     Combo_f2.Items.Add("Mediumt");
                     Combo_f2.Items.Add("Small");
                     break;
-                case "Location":
+                case "location":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("San Francisco");
                     Combo_f2.Items.Add("Singapore");
                     Combo_f2.Items.Add("Sydney");
                     Combo_f2.Items.Add("Dubay");
                     Combo_f2.Items.Add("Tokyo");
                     break;
-                case "AI Adoption Level":
+                case "adoption_level":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("High");
-                    Combo_f2.Items.Add("Mediumt");
+                    Combo_f2.Items.Add("Medium");
                     Combo_f2.Items.Add("Low");
                     break;
-                case "Automation Risk":
+                case "automation_risk":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("High");
-                    Combo_f2.Items.Add("Mediumt");
+                    Combo_f2.Items.Add("Medium");
                     Combo_f2.Items.Add("Low");
                     break;
-                case "Required Skills":
+                case "required_skills":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("Project Management");
                     Combo_f2.Items.Add("Python");
                     Combo_f2.Items.Add("Cybersecurity");
@@ -94,16 +101,19 @@ namespace ProgettoDataSet
                     Combo_f2.Items.Add("UX/UI Design");
                     Combo_f2.Items.Add("Data Analysis");
                     break;
-                case "Salary USD":
+                case "salary_usd":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     break;
-                case "Remote Friendly":
+                case "remote_friendly":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("Yes");
                     Combo_f2.Items.Add("No");
                     break;
-                case "job Growth Projection":
+                case "job_growth_projection":
                     Combo_f2.Items.Clear();
+                    Combo_f2.Text = null;
                     Combo_f2.Items.Add("Growth");
                     Combo_f2.Items.Add("Stable");
                     Combo_f2.Items.Add("Decline");
@@ -115,8 +125,21 @@ namespace ProgettoDataSet
 
         private void button2_Click(object sender, EventArgs e)
         {
-            foreach (var campo in ) ;
-              
+            for(int i = 0; i < lista.jobs.Count; i++)
+            {
+                var tipo = lista.jobs[i].GetType();  // Ottieni il tipo dell'oggetto
+                var proprieta = tipo.GetProperty(Combo_f1.SelectedItem.ToString());  // Ottieni la proprietà
+                var valoreProprieta = proprieta.GetValue(lista.jobs[i])?.ToString();  // Ottieni il valore della proprietà come stringa
+
+                if (valoreProprieta == Combo_f2.SelectedItem.ToString())
+                {
+                    jobs2.Add(lista.jobs[i]);
+                }
+            }
+
+            dataGridView1.DataSource = jobs2;
+
+
         }
     }
 }
