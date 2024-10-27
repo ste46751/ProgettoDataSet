@@ -143,19 +143,32 @@ namespace ProgettoDataSet
         private void button2_Click(object sender, EventArgs e)
         {
             List<Job> jobs2 = new List<Job>();
-
-            for (int i = 0; i < lista.jobs.Count; i++)
+            if(Combo_f1.SelectedItem != null && Combo_f2.SelectedItem != null)
             {
-                var tipo = lista.jobs[i].GetType();  // Ottieni il tipo dell'oggetto
-                var proprieta = tipo.GetProperty(Combo_f1.SelectedItem.ToString());  // Ottieni la proprietà
-                var valoreProprieta = proprieta.GetValue(lista.jobs[i])?.ToString();  // Ottieni il valore della proprietà come stringa
-
-                if (valoreProprieta == Combo_f2.SelectedItem.ToString())
+                for (int i = 0; i < lista.jobs.Count; i++)
                 {
-                    jobs2.Add(lista.jobs[i]);
+                    var tipo = lista.jobs[i].GetType();  // Ottieni il tipo dell'oggetto
+                    var proprieta = tipo.GetProperty(Combo_f1.SelectedItem.ToString());  // Ottieni la proprietà
+                    var valoreProprieta = proprieta.GetValue(lista.jobs[i])?.ToString();  // Ottieni il valore della proprietà come stringa
+
+                    if (valoreProprieta == Combo_f2.SelectedItem.ToString())
+                    {
+                        jobs2.Add(lista.jobs[i]);
+                    }
                 }
+                dataGridView1.DataSource = jobs2;
             }
-            dataGridView1.DataSource = jobs2;
+            else if(Combo_f1.SelectedItem == null && Combo_f2.SelectedItem == null)
+            {
+                MessageBox.Show("Seleziona un campo in entrambe le celle");
+                dataGridView1.DataSource = lista.jobs;
+            }
+            else if (Combo_f1.SelectedItem == null || Combo_f2.SelectedItem == null)
+            {
+                MessageBox.Show("Seleziona un campo in entrambe le celle");
+                dataGridView1.DataSource = lista.jobs;
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -243,7 +256,7 @@ namespace ProgettoDataSet
             serie2.Points.AddXY("Data Scientist", GetQuantity("Data Scientist", campo2));
             serie2.Points.AddXY("Operations Manager", GetQuantity("Operations Manager", campo2));
 
-            chart2.Titles.Add("");
+            chart2.Titles.Add("Jobs");
 
             chart2.ChartAreas[0].AxisX.Title = "Job";
             chart2.ChartAreas[0].AxisY.Title = "Quantity";
@@ -307,9 +320,9 @@ namespace ProgettoDataSet
             serie4.Points.AddXY("Python", GetQuantity("Python", campo4));
             serie4.Points.AddXY("Data Analysis", GetQuantity("Data Analysis", campo4));
 
-            chart4.Titles.Add("Locations in the world");
+            chart4.Titles.Add("Required Skills");
 
-            chart4.ChartAreas[0].AxisX.Title = "Required Skills";
+            chart4.ChartAreas[0].AxisX.Title = "Required Skill";
             chart4.ChartAreas[0].AxisY.Title = "Quantity";
         }
     }
